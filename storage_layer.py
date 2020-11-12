@@ -41,6 +41,3 @@ def delete(key):
         del_key = datas.pop(key)  # 返回删除的key
         print("已成功删除" + key + ": " + del_key)
         json.dump(datas, f_obj)
-
-
-set('seven', '7')
