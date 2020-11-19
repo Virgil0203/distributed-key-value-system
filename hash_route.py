@@ -4,29 +4,43 @@
 """
 
 
-import storage_layer1
-import storage_layer2
+# import storage_layer1
+# import storage_layer2
+from xmlrpc.client import ServerProxy
+
+
+
+# if __name__ == '__main__':
+server1 = ServerProxy("http://localhost:8888") # 初始化服务器
+server2 = ServerProxy("http://localhost:8000") # 初始化服务器
 
 
 def hash_get(key):
     """根据key来散列到不同的服务器, 执行get"""
     if int(key) <= 500:
-        storage_layer1.get_k(key)  # 实际要把key传到服务器，并调用此函数
+        print(server1.get(key))
+        # storage_layer1.get_k(key)  # 实际要把key传到服务器，并调用此函数
     else:
-        storage_layer2.get_k(key)
+        # storage_layer2.get_k(key)
+        print(server2.get(key))
 
 
 def hash_set(key, value):
     """根据key来散列到不同的服务器，执行set"""
-    if int(key) <= 500: 
-        storage_layer1.set_kv(key, value)
+    if int(key) <= 500:
+        print(server1.set(key, value))
+       # storage_layer1.set_kv(key, value)
     else:
-        storage_layer2.set_kv(key, value)
+       # storage_layer2.set_kv(key, value)
+       print(server2.set(key, value))
 
 
 def hash_del(key):
     """根据key来散列到不同的服务器，执行del"""
     if int(key) <= 500:
-        storage_layer1.delete_k(key)
+        print(server1.delete(key))
+        # storage_layer1.delete_k(key)
     else:
-        storage_layer2.delete_k(key)
+        # storage_layer2.delete_k(key)
+        print(server2.delete(key))
+
