@@ -18,7 +18,7 @@ def hash_get(key):
 
 def hash_set(key, value):
     """根据key来散列到不同的服务器，执行set"""
-    if int(key) <= 500:
+    if int(key) <= 500: 
         storage_layer1.set_kv(key, value)
     else:
         storage_layer2.set_kv(key, value)
